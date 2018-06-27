@@ -25,7 +25,7 @@ create table utente(
     nome varchar(100) not null,
     cognome varchar(100) not null,
     data_n datetime not null,
-    utenza enum('a','p') not null default 'a',#con a rappresentiamo l'utente passivo, con p quello attivo
+    utenza tinyint not null default '0',#con 0 rappresentiamo l'utente passivo, con 1 quello attivo
     email varchar(100)not null,
     psw varchar(100)not null,
     indirizzo varchar(200) ,
