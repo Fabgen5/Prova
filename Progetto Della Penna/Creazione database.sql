@@ -1,7 +1,8 @@
-/*create user 'testuser1'@'localhost' identified by 'Local3'   ;
-grant all on *.* to 'testuser1'@'localhost' ;
-*/
-drop database if exists biblioteca; 
+
+create user if not exists lbduser@localhost identified by 'lbdpass' ;
+grant all on campionato.* to lbduser@localhost ;
+
+drop database if exists biblioteca ;
 
 # creaimo il database e lo selezioniamo come default per tutte le istruzioni successive
 create database biblioteca;

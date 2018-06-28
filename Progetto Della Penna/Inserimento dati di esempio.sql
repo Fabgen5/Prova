@@ -74,10 +74,92 @@ insert into autore(nome,cognome,data_n,nazionalita)
                (16,3),(16,4),(16,22);
            
         
+ insert into capitolo_sezione (numero,nome,ID_pubblicazione)
+		values ('1','Introduzione','1'),  ('2','La squadra in azione','1'),  ('3','Tutto è bene quel che finisce bene','1'),
+			   ('1','Introduzione','2'),   ('2','Un nuovo nemico','2'),  ('3','Una famiglia allargata','2'),
+               ('1','Introduzione','3'),  ('2','Ecco Nonno Libero','3'),  ('3','Lele è tornato','3'),  ('4','Viva il Matrimonio','3'),
+               ('1','Introduzione','4'),  ('2','Tornano i dinosauri','4'),  ('3','Un parco per loro','4'),  ('4','La fine dei T rex?','4'),
+               ('1','Introduzione','5'),  ('2','Sabrina e le sue avventure','5'),  ('3','Una magia del futuro','5'),
+               ('1','Introduzione','6'),  ('2','De Sica e i suoi amici','6'),  ('3','Una foto per ricordo','6'),
+               ('1','Introduzione','7'),  ('2','Un salto nel vuoto','7'),  ('3','Supera i limiti','7'),
+               ('1','Introduzione','8'),  ('2','Ti regalo una bambola','8'),  ('3','Scappa bimbo scappa','8'),  ('4','Un girone per tutti','8'),
+               ('1','Introduzione','9'),  ('2','Una nuova segretaria','9'),  ('3','Una nuova amica','9'),
+               ('1','Introduzione','10'),  ('2','La nuova avventura','10'),
+               ('1','Introduzione','11'),  ('2','Elio si racconta','11'),  ('3','Amici per tutti i bimbi','11'),
+               ('1','Introduzione','12'),  ('2','Uno strano incontro','12'),
+               ('1','Introduzione','13'),  ('2','Inizia la prova','13'),  ('3','Harry ed i suoi amici','13'),  ('4','Torna il signore','13'),
+               ('1','Introduzione','14'),  ('2','Un viaggio inaspettato','14'),  ('3','Mai a casa','14'),  ('4','Gli amici del futuro','14'),
+               ('1','Introduzione','15'),  ('2','Nel mezzo del cammin','15'),  ('3','Purgatorio','15'),  ('4','A riveder le stelle, Beatrice','15'),
+               ('1','Introduzione','16'),  ('2','Impara lo schema ER con noi','16'),  ('3','Programmazione progettuale','16');
+ 
+ 
+ insert into parola_chiave (descr)
+		values ('Ciao'),('Gatto'),('Tavolo'),('Sedia'),('Virgilio'),('Pluto'),('Topolino'),('Svelto'),('Camino'),('Macchina'),('Gioco'),('Labirinto'),('Felice'),('Custode'),
+				('Giardino'),('Tuta'),('Povero'),('Porta'),('Cellulare'),('Beatrice'),('Neve'),('ER'),('Schema'),('Filo'),('Autobus'),('Nave'),('Cielo'),('Luna'),('Gironi'),
+                ('T rex'),('Girasole'),('Grano'),('Maiale'),('Cane'),('Medusa'),('Sirena'),('Fuoco'),('Drago'),('Laura'),('Fabio'),('Computer'),('Rapina'),('Professore'),
+                ('Ruolo'),('Nuotare'),('Calzetta'),('Lattina'),('Foglio'),('Omero'),('Scheda'),('Chiosco'),('Capire'),('Salto'),('Immersione'),('Faticare'),('Amore'),
+                ('Cuore');
         
         
         
         
+        
+        
+ insert into contenuta (ID_pubblicazione,ID_parola_chiave)
+		values (1,1),(1,6),(1,19),
+				(2,40),(2,44),(2,54),(2,23),
+                (3,24),(3,21),(3,15),
+                (4,33),(4,13),(4,32),(4,12),(4,3),
+                (5,2),(5,10),
+                (6,17),
+                (7,17),(7,20),(7,8),(7,4),
+                (8,2),(8,23),
+                (9,18),(9,4),
+                (10,34),
+                (11,12),(11,1),(11,2),(11,5),
+                (12,8),(12,7),(12,9),
+                (13,15),(13,17),(13,19),
+                (14,26),(14,29),(14,17),
+                (15,38),(15,26),
+                (16,36);
+
+insert into ristampa(numero,data_r,ID_pubblicazione)
+		values (1,'2000-10-03',1),(2,'2008-10-03',1),(3,'2014-10-03',1),
+				(1,'1998-12-03',2),(2,'2010-05-03',2),
+                
+                (1,'1900-10-03',4),(2,'2000-10-03',4),
+                
+                (1,'2003-03-23',6),(2,'2006-11-30',6),
+                
+                (1,'2008-10-23',8),
+                (1,'1998-10-03',9),
+                (1,'2010-12-03',10),
+                (1,'2000-06-03',11),(2,'2010-07-16',11),
+                (1,'2014-10-03',12),
+                (1,'2014-03-12',13),
+                (1,'2016-10-30',14),
+                (1,'1950-01-03',15),(2,'2018-05-03',15),
+                (1,'2016-10-03',16),(2,'2018-01-03',16);
+                
+							
+insert into sorgente(formato,tipo,uri,descr,ID_pubblicazione)
+		values ('image/jpeg','immagine','http://server1.net/cover.jpg','copertina',1),('application/pdf','download','http://server1.net/book.pdf','versione elettronica gratuita',1),('cartaceo,copertina rigida','acquisto','http://amazon.it/xyz','acquisto online',1),
+				('image/jpeg','immagine','http://server2.net/cover.jpg','copertina',2),('application/pdf','download','http://server134.net/book.pdf','versione elettronica gratuita',2),('cartaceo,copertina rigida','acquisto','http://ebay.it/xyz','acquisto online',2),
+				('image/jpeg','immagine','http://server3.net/cover.jpg','copertina',3),('application/pdf','download','http://libro.net/book.pdf','versione elettronica gratuita',3),
+				('image/jpeg','immagine','http://server4.net/cover.jpg','copertina',4), ('cartaceo,copertina rigida','acquisto','http://subito.it/xyz','acquisto online',4),
+				('image/jpeg','immagine','http://server5.net/cover.jpg','copertina',5),('application/pdf','download','http://servefew1.net/book.pdf','versione elettronica gratuita',5),
+				('image/jpeg','immagine','http://server6.net/cover.jpg','copertina',6),('cartaceo,copertina rigida','acquisto','http://amazon.it/xyz','acquisto online',6),
+                ('image/jpeg','immagine','http://server7.net/cover.jpg','copertina',7),('cartaceo,copertina rigida','acquisto','http://ebay.it/xyz','acquisto online',7),
+				('image/jpeg','immagine','http://server8.net/cover.jpg','copertina',8),('cartaceo,copertina rigida','acquisto','http://libraccio.it/xyz','acquisto online',8),
+				('image/jpeg','immagine','http://server9.net/cover.jpg','copertina',9),('application/pdf','download','http://libraccio.net/book.pdf','versione elettronica gratuita',9),('cartaceo,copertina rigida','acquisto','http://amazon.it/xyz','acquisto online',9),
+				('image/jpeg','immagine','http://wikipedia.net/cover.jpg','copertina',10),('cartaceo,copertina rigida','acquisto','http://amazon.it/xyz','acquisto online',10),
+				('image/jpeg','immagine','http://google.net/cover.jpg','copertina',11),('cartaceo,copertina rigida','acquisto','http://amazon.it/xyz','acquisto online',11),
+				('image/jpeg','immagine','http://imggoogle.net/cover.jpg','copertina',12),('application/pdf','download','http://gratisqui.net/book.pdf','versione elettronica gratuita',12),('cartaceo,copertina rigida','acquisto','http://libro.it/xyz','acquisto online',12),
+                ('image/jpeg','immagine','http://immaginecop.net/cover.jpg','copertina',13),('cartaceo,copertina rigida','acquisto','http://subito.it/xyz','acquisto online',13),
+				('image/jpeg','immagine','http://server14.net/cover.jpg','copertina',14),('cartaceo,copertina rigida','acquisto','http://libraccio.it/xyz','acquisto online',14),
+				('image/jpeg','immagine','http://server15.net/cover.jpg','copertina',15),('application/pdf','download','http://librofree.net/book.pdf','versione elettronica gratuita',15),('cartaceo,copertina rigida','acquisto','http://youlibro.it/xyz','acquisto online',15),
+				('image/jpeg','immagine','http://server16.net/cover.jpg','copertina',16),('application/pdf','download','http://nomoney.net/book.pdf','versione elettronica gratuita',16);
+				
         
 
  

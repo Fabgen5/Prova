@@ -1,10 +1,11 @@
 
 use biblioteca;
-/*Query1
+/*Query1*/
+set @u = 3 ;
 update utente set utenza= (utenza+1) mod 2
-where (ID=1);
+where (ID=@u);
 
-*/
+
 
 /*Query2
 
@@ -14,7 +15,17 @@ order by data_ins desc
 limit 10;
 */
 
-/*Query3*/
+/*Query3
+
+Select 
+from
+where
+ */
+
+
+
+
+
 
 /*Query4
 UTENTI PIU COLLABORATIVI
@@ -35,34 +46,37 @@ order by Pubblicazioni_inserite desc limit 10;*/
 
 /*Query5 
 Estrazione delle pubblicazioni inserite da un utente DA PARAMETRIZZARE
-
-select * 
+set @b=4;
+select p.titolo,p.isn,p.data_ins 
 from pubblicazione p
-where p.ID_utente=1
+where p.ID_utente=@b
 */
 
 /*Query6
-Estrazione catalogo delle pubblicazioni con titolo,autori,editore,anno pubblicazione, ordinate per titolo
+Estrazione catalogo delle pubblicazioni con titolo,autori,editore,anno pubblicazione, ordinate per titolo*/
 
-select p.titolo Titolo, a.nome Nome,a.cognome Cognome, e.casaeditrice Editore, p.data_pubb Data_Pubblicazione
-from pubblicazione p 
+/*select p.titolo Titolo,e.casaeditrice Editore, p.data_pubb Data_Pubblicazione,a.nome ,a.cognome
+					
+	from pubblicazione p 
 	join editore e on(e.ID=p.ID_editore)
 	join scrive s on (p.ID=s.ID_pubblicazione)
     join autore a on(s.ID_autore=a.ID)
-order by p.titolo
-
-*/
+order by p.titolo;*/
 
 
 /*QUERY7
 Estrazione dati completi di una pubblicazione specifica dato il suo ID PARAMETRICA*/
-
-select *
-from pubblicazione p 
+/*
+set @c=10
+select p.titolo, p.isbn, p.data_pubb,p.data_ins, e.casaeditrice, a.nome Autore, a.cognome, u.ID InseritaDa,
+		sum(r.ID_pubblicazione) As RecensitoNumeroVolte
+/*from pubblicazione p 
 join editore e on(e.ID=p.ID_editore)
-join scrive s on()
-join autore a
-join utente u
-join recensione r
-join mipiace m
-where p.ID=3;
+join scrive s on(s.ID_pubblicazione=p.ID)
+join autore a on (a.ID=s.ID_autore)
+join utente u on (u.ID=p.ID_utente)
+
+
+where p.ID=@c
+group by p.titolo;
+*/
