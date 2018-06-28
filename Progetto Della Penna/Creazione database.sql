@@ -7,18 +7,13 @@ drop database if exists biblioteca;
 create database biblioteca;
 use biblioteca;
 
-create table pubblicazione(
+create table editore(
 	ID integer unsigned not null primary key auto_increment,
-    isbn char(13) not null unique,
-    titolo varchar(100) not null,
-    lingua varchar(20) not null,
-    num_pag smallint unsigned not null,
-    descr varchar(500)not null,
-    data_pubb date not null,
-    data_ins date not null,
-    ID_utente integer unsigned not null
+    casaeditrice varchar(100) not null,
+    citta varchar(100) not null,
+    
+    constraint unico_editore unique(casaeditrice,citta)
 );
-
 
 create table utente(
 	ID integer unsigned not null primary key auto_increment,
@@ -34,32 +29,45 @@ create table utente(
     cf char(16) not null unique
 );
 
+create table pubblicazione(
+	ID integer unsigned not null primary key auto_increment,
+    isbn char(13) not null unique,
+    titolo varchar(100) not null,
+    lingua varchar(20) not null,
+    num_pag smallint unsigned not null,
+    descr varchar(500)not null,
+    data_pubb date not null,
+    data_ins datetime not null default current_timestamp,
+    ID_utente integer unsigned not null,
+    ID_editore integer unsigned not null,
+    
+    constraint pubblicazione_utente foreign key (ID_utente) references utente(ID) on update cascade,
+	constraint pubblicazione_editore foreign key (ID_editore) references editore(ID) on update cascade 
+);
+
 create table autore(
 	ID integer unsigned not null primary key auto_increment,
     nome varchar(100) not null,
-    cognome varchar(100) not null,
+    cognome varchar(100) default null,
     data_n date not null,
     nazionalita varchar(100) not null,
     
     constraint unico_autore unique(nome,cognome,data_n)
 );
 
-create table editore(
-	ID integer unsigned not null primary key auto_increment,
-    casaeditrice varchar(100) not null,
-    citta varchar(100) not null,
-    
-    constraint unico_editore unique(casaeditrice,citta)
-);
 
 create table recensione(
 	ID integer unsigned not null primary key auto_increment,
-    testo varchar(300) not null,
-    data_app date ,
-    data_rec date not null ,
     ID_pubblicazione integer unsigned not null,
+    testo varchar(300) not null,
     ID_utente integer unsigned not null, 
+    data_rec datetime not null default current_timestamp,
+    ID_utentemod integer unsigned default null,
+    data_app date default null,
     
+    constraint recensione_utentemod foreign key (ID_utentemod) references utente(ID) on update cascade,
+    constraint recensione_utente foreign key (ID_utente) references utente(ID) on update cascade on delete cascade,
+    constraint recensione_pubblicazione foreign key (ID_pubblicazione) references pubblicazione(ID) on update cascade on delete cascade,
     constraint unica_recensione unique(ID_pubblicazione, ID_utente)
 );
 
@@ -71,9 +79,10 @@ create table parola_chiave(
 create table ristampa(
 	ID integer unsigned not null primary key auto_increment,
     numero smallint not null,
-    data_r date not null,
+    data_r datetime not null default current_timestamp,
     ID_pubblicazione integer unsigned not null,
     
+	constraint ristampa_pubblicazione foreign key (ID_pubblicazione) references pubblicazione(ID) on update cascade,
     constraint unica_ristampa unique(numero, ID_pubblicazione)
 );
 
@@ -83,6 +92,7 @@ create table capitolo_sezione(
     nome varchar(100) not null,
     ID_pubblicazione integer unsigned not null,
     
+	constraint capitolo_pubblicazione foreign key (ID_pubblicazione) references pubblicazione(ID) on update cascade on delete cascade,
     constraint unico_capitolo_sezione unique(numero, ID_pubblicazione)
 );
 
@@ -92,7 +102,9 @@ create table sorgente(
     tipo varchar(15) not null,
     uri varchar(100) not null,
     descr varchar(100) not null,
-    ID_pubblicazione integer unsigned not null
+    ID_pubblicazione integer unsigned not null,
+    
+	constraint sorgente_pubblicazione foreign key (ID_pubblicazione) references pubblicazione(ID) on update cascade
 );
 
 
@@ -100,7 +112,9 @@ create table aggiornamento(
   ID integer unsigned not null primary key auto_increment,	
   ID_pubblicazione integer unsigned not null,
   ID_utente integer unsigned not null,
-  data_agg date not null,
+  data_agg datetime not null default current_timestamp,
+  descr_agg varchar (100) not null,
+  
   
   constraint aggiornamento_pubblicazione foreign key (ID_pubblicazione) references pubblicazione(ID) on update cascade,
   constraint aggiornamento_utente foreign key (ID_utente) references utente(ID) on update cascade
@@ -110,7 +124,7 @@ create table mipiace (
   ID integer unsigned not null primary key auto_increment,	
   ID_pubblicazione integer unsigned not null,
   ID_utente integer unsigned not null,
-  data_l date not null,
+  data_l datetime not null default current_timestamp,
   
   constraint unico_mipiace unique(ID_pubblicazione, ID_utente),
   constraint mipiace_pubblicazione foreign key (ID_pubblicazione) references pubblicazione(ID) on update cascade,
