@@ -20,7 +20,7 @@ insert into pubblicazione (isbn,titolo,lingua,num_pag,descr,data_pubb,data_ins,I
                 (7485920384657, 'Natale al nord', 'Italiano',3400,'Commedia classica delle vacanze italiane', '1999-01-23', '2018-06-23',3,3),
                 (6758934710294, 'Break Point', 'inglese',1000,'Superare i limiti oltre le paure', '2015-04-28', '2017-04-18',1,2)  ,      
                 (8490394857694, 'La bambola assassina', 'tedesca',4657,'Avete paura delle bambole da gioco?', '2001-03-30', '2015-06-20',4,1),        
-                (1029287563830, 'Il diavolo veste prada', 'inglese',1394,'Fidarsi è bene, non fidarsi è... Prada', '1004-08-15', '2018-06-26',4,1), 
+                (1029287563830, 'Il diavolo veste prada', 'inglese',1394,'Fidarsi è bene, non fidarsi è... Prada', '1004-08-15', '2018-02-26',4,1), 
                 (8459381821932, 'Topolino e le sue avventure', 'italiano',1000,'Il racconto di Topolino e dei suoi amici', '2009-03-28', '2017-06-20',2,1) ,       
                 (5435435435435, 'Elio e le storie tese', 'inglese',654,'Una vita divertente insieme ad Elio', '1998-03-28', '2018-02-20',1,2),        
                 (7676575743534, 'Paperino', 'tedesca',63463,'Amici lui e Pluto', '1900-08-24', '2018-06-20',2,3),        
@@ -198,8 +198,35 @@ insert into mipiace (ID_pubblicazione,ID_utente,data_l)
                 (13,1,'2016-05-20','ha inserito una pubblicazione'),      
                 (14,3,'2018-06-15','ha inserito una pubblicazione'),        
                 (15,3,'2018-03-20','ha inserito una pubblicazione'),        
-                (16,4,'2017-09-20','ha inserito una pubblicazione');  
+                (16,4,'2017-09-20','ha inserito una pubblicazione'),  
+			
+            /*MODIFICHE PUBBLICAZIONE*/
+            
+				(1,3,'2018-06-22','ha modificato una pubblicazione'), (1,2,'2018-06-23','ha modificato una pubblicazione'), (1,4,'2018-06-25','ha modificato una pubblicazione'), 
+				(2,3,'2018-06-20','ha modificato una pubblicazione'), 
+                (3,1,'2018-05-25','ha modificato una pubblicazione'), 
+                (4,4,'2018-05-28','ha modificato una pubblicazione'), 
+                (5,1,'2018-06-26','ha modificato una pubblicazione'), 
+                (6,1,'2018-06-25','ha modificato una pubblicazione'),(6,1,'2018-06-26','ha modificato una pubblicazione'), 
+                (7,1,'2018-02-20','ha modificato una pubblicazione'), 
+                (8,3,'2016-04-26','ha modificato una pubblicazione'), 
                 
+                (10,3,'2017-08-23','ha modificato una pubblicazione'), 
+                (11,2,'2018-03-1','ha modificato una pubblicazione'), 
+                
+                (13,2,'2016-10-20','ha modificato una pubblicazione'), (13,1,'2017-05-29','ha modificato una pubblicazione'), 
+                (15,2,'2018-04-17','ha modificato una pubblicazione'), (15,1,'2018-05-20','ha modificato una pubblicazione'), 
+                (16,1,'2017-12-5','ha modificato una pubblicazione');
+                
+            
+            
+            
+            
+            
+            
+            
+            
+            
                  /*RECENSIONI INSERITE
 				(1,3,'2018-06-21','ha inserito una recensione'),
 				(14,4,'2018-06-20','ha inserito una recensione'),

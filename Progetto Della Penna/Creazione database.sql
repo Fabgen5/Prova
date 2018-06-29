@@ -116,7 +116,6 @@ create table aggiornamento(
   data_agg datetime not null default current_timestamp,
   descr_agg varchar (100) not null,
   
-  
   constraint aggiornamento_pubblicazione foreign key (ID_pubblicazione) references pubblicazione(ID) on update cascade,
   constraint aggiornamento_utente foreign key (ID_utente) references utente(ID) on update cascade
 );
