@@ -79,13 +79,13 @@ set @c=16;
 select p.*, e.casaeditrice Editore , concat( a.nome,' ',a.Cognome ) Autore
 		 
 from pubblicazione p 
-join editore e on(e.ID=p.ID_editore)
-join scrive s on(s.ID_pubblicazione=p.ID)
-join autore a on (a.ID=s.ID_autore)
 join utente u on (u.ID=p.ID_utente)
+join editore e on(e.ID=p.ID_editore)
+join scrive s on(p.ID=s.ID_pubblicazione)
+join autore a on (a.ID=s.ID_autore)
 
 where p.ID=@c
-group by  p.titolo,Autore
+group by  p.titolo
 
 
 /*	QUERY8*/
