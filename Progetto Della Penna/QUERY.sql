@@ -117,14 +117,70 @@ where p.titolo=@Titolo or pc.descr=@Parola_chiave or p.isbn=@ISBN or a.nome=@Nom
 Inserimento di una recensione relativa ad una pubblicazione
 set @Testo='';
 set @ID_pubblicazione='';
+
+
+
+
+#QUERY09 INSERIMENTO DI UNA RECENSIONE IN UNA PUBBLICAZIONE CON PROCEDUCE CHE AGGIORNA LA TAB AGGIORNAMENTO
+
+
+delimiter $
+
+
+drop procedure if exists recensioneagg$
+
+create procedure recensioneagg(_ID_pubblicazione integer unsigned, _testo varchar(300) ,
+						_data_rec datetime, _ID_utente integer unsigned, _data_app date, _ID_utentemod integer unsigned) 
+begin
+ 
+
+-- inseriamo la recensione 
+insert into recensione(ID_pubblicazione,testo,data_rec,ID_utente,data_app,ID_utentemod) values (_ID_pubblicazione,_testo,_data_rec,_ID_utente,_data_app,_ID_utentemod);
+-- aggiorniamo la tabella aggiornamento
+insert into aggiornamento(ID_pubblicazione,ID_utente,data_agg,descr_agg)
+		values (_ID_pubblicazione,_ID_utente , _data_rec, 'ha inserito una recensione');
+
+end$  
+call recensioneagg(16,'carino,consigliato',current_timestamp,8,null,null)$
+
    */
 
 
 /*QUERY10 inserimento di una recensione, non serve il trigger perchè per noi recensione non è un agionrmameno
 
 insert into recensione(ID_pubblicazione,testo,data_rec,ID_utente,data_app,ID_utentemod)
-	values (12,Ok,fantastico,'null',8,'null','null');*/
+	values (12,Ok,fantastico,'null',8,'null','null');
+    
+    
+    
+    
+    #QUERY10 APPROVAZIONE DI UNA RECENSIONE IN UNA PUBBLICAZIONE CON AGGIORNAMENTO TAB AGGIORNAMENTO
 
+
+delimiter $
+
+
+drop procedure if exists approvazionerec$
+
+create procedure approvazionerec(_ID_pubblicazione integer unsigned, _ID_utente integer unsigned, _data_app datetime, _ID_utentemod integer unsigned) 
+begin
+ 
+
+-- aggiorniamo la recensione con update 
+update  recensione as r 
+set r.data_app=_data_app and r.ID_utentemod=_ID_utentemod
+where r.ID_pubblicazione=_ID_pubblicazione and r.ID_utente=_ID_utente 
+		and _ID_utentemod not in(select u.ID
+									from utente u
+                                     where u.ID = 'b');
+-- aggiorniamo la tabella aggiornamento
+insert into aggiornamento(ID_pubblicazione,ID_utente,data_agg,descr_agg)
+		values (_ID_pubblicazione,_ID_utentemod , _data_app, 'ha approvato una recensione dell\' utente + _ID_utente');
+
+end$  
+call approvazionerec(1,3,current_timestamp,8)$
+
+*/
 
 /*QUERY11 Inserimento like aggiornamento tabella 'aggiornamento'
 delimiter $
@@ -144,9 +200,9 @@ insert into aggiornamento(ID_pubblicazione,ID_utente,data_agg,descr_agg)
 		values (_ID_pubblicazione,_ID_utente , _data_l, 'ha inserito un like');
 
 end$  
-call inserisci_mipiace(1,7,'2018-07-02')$
+call inserisci_mipiace(1,7,current_timestamp)$
  */
- 
+
  /*QUERY12 calcolo numero dei like per tutte le pubblicazioni
 
 
@@ -234,4 +290,8 @@ select p.titolo, a.nome Nome,a.cognome Cognome
 								) ) 
 group by p.titolo;
 */
+
+#update recensione r
+#set r.ID_utentemod=7 and r.data_app=null
+#where r.ID_pubblicazione=1 and r.ID_utente=3;
 
