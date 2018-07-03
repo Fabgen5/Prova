@@ -1,6 +1,6 @@
 
-create user if not exists lbduser@localhost identified by 'lbdpass' ;
-grant all on biblioteca.* to lbduser@localhost ;
+create user if not exists GentileDiEgidio@localhost identified by 'flpass' ;
+grant all on biblioteca.* to GentileDiEgidio@localhost ;
 
 drop database if exists biblioteca ;
 
