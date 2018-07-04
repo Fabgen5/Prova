@@ -121,7 +121,7 @@ set @ID_pubblicazione='';
 
 
 
-#QUERY09 INSERIMENTO DI UNA RECENSIONE IN UNA PUBBLICAZIONE CON PROCEDUCE CHE AGGIORNA LA TAB AGGIORNAMENTO
+#QUERY09 INSERIMENTO DI UNA RECENSIONE IN UNA PUBBLICAZIONE CON PROCEDUCE CHE AGGIORNA LA TAB AGGIORNAMENTO 
 
 
 delimiter $
@@ -143,15 +143,11 @@ insert into aggiornamento(ID_pubblicazione,ID_utente,data_agg,descr_agg)
 end$  
 call recensioneagg(16,'carino,consigliato',current_timestamp,8,null,null)$
 
-   */
+*/  
 
 
-/*QUERY10 inserimento di una recensione, non serve il trigger perchè per noi recensione non è un agionrmameno
+/*
 
-insert into recensione(ID_pubblicazione,testo,data_rec,ID_utente,data_app,ID_utentemod)
-	values (12,Ok,fantastico,'null',8,'null','null');
-    
-    
     
     
     #QUERY10 APPROVAZIONE DI UNA RECENSIONE IN UNA PUBBLICAZIONE CON AGGIORNAMENTO TAB AGGIORNAMENTO
@@ -167,12 +163,12 @@ begin
  
 
 -- aggiorniamo la recensione con update 
-update  recensione as r 
-set r.data_app=_data_app and r.ID_utentemod=_ID_utentemod
-where r.ID_pubblicazione=_ID_pubblicazione and r.ID_utente=_ID_utente 
-		and _ID_utentemod not in(select u.ID
-									from utente u
-                                     where u.ID = 'b');
+update  recensione
+set recensione.data_app=_data_app and r.ID_utentemod=_ID_utentemod
+where recensione.ID_pubblicazione=_ID_pubblicazione and recensione.ID_utente=_ID_utente 
+		and _ID_utentemod  in(select u.ID
+							  from utente u
+							  where u.categoria = 'm');
 -- aggiorniamo la tabella aggiornamento
 insert into aggiornamento(ID_pubblicazione,ID_utente,data_agg,descr_agg)
 		values (_ID_pubblicazione,_ID_utentemod , _data_app, 'ha approvato una recensione dell\' utente + _ID_utente');
@@ -201,8 +197,8 @@ insert into aggiornamento(ID_pubblicazione,ID_utente,data_agg,descr_agg)
 
 end$  
 call inserisci_mipiace(1,7,current_timestamp)$
- */
-
+ 
+*/
  /*QUERY12 calcolo numero dei like per tutte le pubblicazioni
 
 

@@ -238,9 +238,30 @@ insert into mipiace (ID_pubblicazione,ID_utente,data_l)
                 
                 (13,6,'2016-10-20','ha modificato una pubblicazione'), (13,4,'2017-05-29','ha modificato una pubblicazione'), 
                 (15,8,'2018-04-17','ha modificato una pubblicazione'), (15,2,'2018-05-20','ha modificato una pubblicazione'), 
-                (16,7,'2017-12-05','ha modificato una pubblicazione');
+                (16,7,'2017-12-05','ha modificato una pubblicazione'),
                 
-
+				/*INSERIMENTO RECENSIONE*/
+                (1,3,'2018-06-29','ha inserito una recensione'),
+				(14,4,'2018-06-20','ha inserito una recensione'),
+				(10,4,'2018-06-12','ha inserito una recensione'),
+                (4,3,'2018-05-29','ha inserito una recensione'),
+                (8,2,'2018-06-15','ha inserito una recensione'),
+                (16,6,'2017-12-12','ha inserito una recensione'),
+                (6,8,'2018-06-26','ha inserito una recensione'),
+                (6,5,'2017-10-09','ha inserito una recensione'),
+                (1,6,'2018-06-30','ha inserito una recensione'),
+                (13,5,'2017-09-15','ha inserito una recensione'),
+                
+                /*APPROVAZIONE DI UNA RECENSIONE*/
+                
+			
+				(10,4,'2018-06-21','ha approvato una recensione dell\' utente 4'),
+                (4,3,'2018-06-01','ha approvato una recensione dell\' utente 3'),
+                (16,7,'2018-01-01','ha approvato una recensione dell\' utente 6'),
+                (6,7,'2018-02-01','ha approvato una recensione dell\' utente 5'),
+                (13,3,'2017-09-21','ha approvato una recensione dell\' utente 5');
+				
+        
    
 						
         
